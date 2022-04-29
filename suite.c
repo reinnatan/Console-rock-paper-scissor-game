@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+
+int main(){
+	
+	char commands[3]={'R', 'S', 'P'};
+	int start = 0;		
+	int times = 0;
+	printf("How many times to suite? : ");
+	scanf("%d", &times);
+		
+	int countComputer=0;
+	int countPlayer=0;
+	char sel, selsuit;
+
+
+	while(start<times){
+		int rnd = rand() % 3;
+		sel = commands[rnd];
+		
+		printf("your suite : ");
+		while((selsuit=getc(stdin))=='\n');
+		//printf("%c", selsuit);
+		selsuit = toupper(selsuit);	
+		
+		if (selsuit == 'R'){
+			if(sel=='P'){
+				countComputer +=1;			
+			}else if(sel=='S'){
+				countPlayer +=1;
+			}
+
+		}else if(selsuit=='S'){
+			if (sel=='R'){
+				countComputer +=1;	
+			}else if(sel=='P'){
+				countPlayer +=1;
+			}
+			
+		}else if(selsuit=='P'){
+			if (sel=='R'){
+				countPlayer +=1;
+			}else if(sel=='S'){
+				countComputer +=1;
+			}
+		}
+
+
+		//printf("\nComputer Count : %d \n", countComputer);
+		//printf("Player Count : %d\n\n", countPlayer);
+		
+		start+=1;
+	}
+
+	if(countPlayer==countComputer){
+		printf("Draw !!!\n");
+	}else if(countPlayer<countComputer){
+		printf("You Lose !!!\n");
+	}else{
+		printf("You Win !!!\n");
+	}
+
+}
